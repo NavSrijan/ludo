@@ -2,7 +2,9 @@ import discord
 from ludo import Ddraw, Ludo, Player
 import random as r
 import configparser
-import pdb
+import os
+
+token = os.environ["token"]
 
 client = discord.Client()
 
@@ -251,4 +253,4 @@ async def on_reaction_add(reaction, user):
             L.message = q
             waitinForReaction = False
 
-client.run('')
+client.run(token)
