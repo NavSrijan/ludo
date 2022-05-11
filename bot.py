@@ -181,7 +181,7 @@ async def on_message(message):
 
 @client.event
 async def on_reaction_add(reaction, user):
-    if reaction.channel.id==channelID:
+    if reaction.message.channel.id==channelID:
         global waitinForReaction
         if user == client.user:
             return
