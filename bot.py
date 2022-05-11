@@ -79,6 +79,8 @@ End game  : {n["endGame"]}
         """
         await message.reply(text)
         del n
+    if message.content==nirdesh["endGame"]:
+        L = ""
 
     if waitinForReaction==False:
         if message.content==(nirdesh["createGame"]):
@@ -114,7 +116,7 @@ End game  : {n["endGame"]}
                 num = int(L.rollDice(message.author.id)) # Rolled
             except:
                 await message.channel.send(f"It isn't your turn. <@{message.author.id}>")
-            num = int(input("> "))
+            #num = int(input("> "))
             L.num = num # stored roll number into the ludo object
             player = L.players[L.turn] # Extracted the player object of whom the turn is
             gotis = player.gotis # Extracted the gotis of that player

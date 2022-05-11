@@ -3,6 +3,9 @@ import sys
 import random
 import pdb
 
+imageName = "baseF.png"
+noOfGotisToPlayWith=4
+
 def draw():
     #Yellow
     bl = [196, 454]
@@ -22,7 +25,7 @@ def draw():
     #x2+=26
     y2-=(25*k)+offset*k
 
-    with Image.open("base.png") as im:
+    with Image.open(imageName) as im:
 
         draw = ImageDraw.Draw(im)
 
@@ -81,7 +84,7 @@ class Goti():
                     p2 = i.places[i.currentPlace]
                     p1x1, p1y1, p1x2, p1y2 = p1.returnVars()
                     p2x1, p2y1, p2x2, p2y2 = p2.returnVars()
-                    if p1x1==p2x1 and p1y1==p2y1:
+                    if p1x1==p2x1 and p1y1==p2y1 and p1.safe==False:
                         i.cutGoti()
                         if L.num!=6:
                             L.turn-1
@@ -90,6 +93,8 @@ class Goti():
                 self.laal()
                 self.owner.checkForWin(L)
                 return False
+            else:
+                return True
 
             #self.places[num].addGoti(self)
             #print(self.places[num].gotiPresent)
@@ -204,6 +209,9 @@ def createPlace(color):
 
         off = 17
 
+        # Safe house declaration
+        yellowLL[3].safe=True
+
         #for i in yellowLL:
         #    (i.printVars())
         return yellowLL
@@ -261,9 +269,8 @@ def createPlace(color):
         yellowLL.append(Place(x3,y3, ghar=True))
         yellowLL.append(Place(x4,y4, ghar=True))
         
-        
-
-        
+        # Safe house declaration
+        yellowLL[3].safe=True
 
         #for i in yellowLL:
         #    (i.printVars())
@@ -322,8 +329,8 @@ def createPlace(color):
         yellowLL.append(Place(x3,y3, ghar=True))
         yellowLL.append(Place(x4,y4, ghar=True))
         
-
-        
+        # Safe house declaration
+        yellowLL[3].safe=True        
 
         #for i in yellowLL:
         #    (i.printVars())
@@ -382,7 +389,8 @@ def createPlace(color):
         yellowLL.append(Place(x3,y3, ghar=True))
         yellowLL.append(Place(x4,y4, ghar=True))
 
-
+        # Safe house declaration
+        yellowLL[3].safe=True
         
 
         #for i in yellowLL:
@@ -394,8 +402,6 @@ def createPlace(color):
     blue = generateBluePlaces()
     yellow = generateYellowPlaces()
     finalLL = []
-
-    red
 
 
     if color=="Red":
@@ -436,7 +442,7 @@ class Player():
         self.gotis = []
         self.laal = 0
     def makeGotis(self):
-        for i in range(1):
+        for i in range(noOfGotisToPlayWith):
             self.gotis.append(Goti(self.color, gharNo=i, owner=self))
     def move(self):
         self.gotis[0].moveGoti()
@@ -558,9 +564,6 @@ class Ludo:
         
         pass
 
-    def cutGoti(self, gotiToCut):
-        gotiToCut.gharKaro()
-
     def chal(self, num, gotiNo=1):
         self.players[self.turn].gotis[gotiNo-1].takeOut()
         self.players[self.turn].gotis[gotiNo-1].move(int(num), self)
@@ -576,7 +579,7 @@ class Ludo:
         return allGotis
 
 def Ddraw(L):
-    with Image.open("base.png") as im:
+    with Image.open(imageName) as im:
 
         draw = ImageDraw.Draw(im)
         for i in L.players:
