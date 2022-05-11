@@ -1,0 +1,8 @@
+[commands]
+prefix=.
+createGame=s
+enterGame=m
+startGame=c
+rollDice=q
+endGame=end
+help=h
