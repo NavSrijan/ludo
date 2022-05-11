@@ -5,7 +5,7 @@ import configparser
 import os
 
 token = os.environ["token"]
-channelID = os.environ["channelID"]
+channelID = int(os.environ["channelID"])
 
 client = discord.Client()
 
@@ -85,13 +85,14 @@ async def on_message(message):
             del n
         if message.content==nirdesh["endGame"]:
             L = ""
+            await message.reply("The current ludo instance has been deleted.")
 
         if waitinForReaction==False:
             if message.content==(nirdesh["createGame"]):
                 #await message.channel.send('Hello!')
                 if type(L)!=Ludo:
                     L = Ludo()
-                    await message.channel.send("A game has been created. Enter by typing -me")
+                    await message.channel.send(f"A game has been created. Enter by typing .{nirdesh['enterGame']}")
                 else:
                     await message.channel.send("A Ludo game already exists.")
             elif message.content==(nirdesh["startGame"]):
@@ -100,13 +101,10 @@ async def on_message(message):
                 mention = ""
                 for pp in L.players:
                     mention+=t.format(pp.id)
-                p = await message.channel.send(f"The game has now begun! "+mention)
+                p = await message.channel.send(f"The game has now begun! {mention}. You can roll the dice by typing .{nirdesh['rollDice']}")
             elif message.content==(nirdesh["enterGame"]):
-                #e,f = emb(L)
-                #q = await message.channel.send(file=f,embed=e)
-                #await q.add_reaction("😀")
                 if L.started==False:
-                    p = await message.channel.send(f"Added <@{message.author.id}>")
+                    p = await message.channel.send(f"Added <@{message.author.id}>. Start the game by typing .{nirdesh['startGame']}")
                     L.addPlayer(Player(message.author.id))
                 else:
                     p = await message.channel.send(f"The game has already started. Thora jaldi aana tha... <@{message.author.id}>")

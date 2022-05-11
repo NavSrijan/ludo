@@ -3,6 +3,6 @@ prefix=.
 createGame=s
 enterGame=m
 startGame=c
-rollDice=q
+rollDice=r
 endGame=end
 help=h
