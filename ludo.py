@@ -211,6 +211,7 @@ def createPlace(color):
 
         # Safe house declaration
         yellowLL[3].safe=True
+        yellowLL[8].safe=True
 
         #for i in yellowLL:
         #    (i.printVars())
@@ -271,6 +272,7 @@ def createPlace(color):
         
         # Safe house declaration
         yellowLL[3].safe=True
+        yellowLL[8].safe=True
 
         #for i in yellowLL:
         #    (i.printVars())
@@ -330,7 +332,8 @@ def createPlace(color):
         yellowLL.append(Place(x4,y4, ghar=True))
         
         # Safe house declaration
-        yellowLL[3].safe=True        
+        yellowLL[3].safe=True
+        yellowLL[8].safe=True        
 
         #for i in yellowLL:
         #    (i.printVars())
@@ -391,6 +394,7 @@ def createPlace(color):
 
         # Safe house declaration
         yellowLL[3].safe=True
+        yellowLL[8].safe=True
         
 
         #for i in yellowLL:
